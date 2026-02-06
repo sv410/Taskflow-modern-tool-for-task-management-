@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - TaskFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-card {
+            background: var(--bg-surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(20, 184, 166, 0.1);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        .auth-link {
+            color: var(--teal-400);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Netted Background -->
+    <div class="netted-background"></div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <svg width="32" height="32" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="12" fill="url(#brand-gradient)" opacity="0.2" />
+                        <path d="M8 14L12 18L20 9" stroke="url(#brand-gradient)" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <defs>
+                            <linearGradient id="brand-gradient" x1="0" y1="0" x2="28" y2="28">
+                                <stop offset="0%" stop-color="#14b8a6" />
+                                <stop offset="100%" stop-color="#06b6d4" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <h1 class="brand-name" style="font-size: 1.75rem;">TaskFlow</h1>
+                </div>
+                <h2 class="auth-title">Create Account</h2>
+                <p class="auth-subtitle">Join us to start organizing your life</p>
+            </div>
+
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (Optional)</label>
+                    <input type="tel" id="phone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Create a password">
+                </div>
+
+                <button type="submit" class="btn-primary"
+                    style="width: 100%; margin-top: 1rem; justify-content: center;">
+                    Sign Up
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="login.html" class="auth-link">Sign In</a>
+                <br>
+                <a href="index.html" class="auth-link"
+                    style="font-size: 0.875rem; display: inline-block; margin-top: 1rem;">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>

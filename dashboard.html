@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Modern Task Management</title>
+    <meta name="description" content="Full-stack task management application with modern UI and powerful API">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Netted Background -->
+    <div class="netted-background"></div>
+
+    <!-- Unique Floating Navbar -->
+    <!-- Unique Floating Navbar for Dashboard -->
+    <nav class="floating-navbar dashboard-navbar">
+        <div class="container nav-container" style="justify-content: flex-end;">
+            <!-- Logo Removed as per request -->
+
+            <div class="nav-menu" style="margin-left: auto;">
+                <a href="index.html" class="nav-item" style="margin-right: 1rem;">Home</a>
+                <div id="userAvatar" class="emoji-avatar" title="Profile" style="margin-right: 0.5rem;"></div>
+                <span id="welcomeMsg" style="color: var(--teal-400); font-weight: 500; margin-right: 1rem;"></span>
+
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" style="margin-right: 1rem;">
+                    <span class="toggle-track">
+                        <span class="toggle-indicator">
+                            <!-- Sun Icon -->
+                            <svg class="sun-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <circle cx="12" cy="12" r="5" stroke-width="2"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3" stroke-width="2" stroke-linecap="round"></line>
+                                <line x1="12" y1="21" x2="12" y2="23" stroke-width="2" stroke-linecap="round"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2" stroke-linecap="round">
+                                </line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2"
+                                    stroke-linecap="round"></line>
+                                <line x1="1" y1="12" x2="3" y2="12" stroke-width="2" stroke-linecap="round">
+                                </line>
+                                <line x1="21" y1="12" x2="23" y2="12" stroke-width="2" stroke-linecap="round">
+                                </line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-width="2" stroke-linecap="round">
+                                </line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-width="2" stroke-linecap="round">
+                                </line>
+                            </svg>
+                            <!-- Moon Icon -->
+                            <svg class="moon-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" style="display: none;"></svg>
+                        </span>
+                    </span>
+                </button>
+
+                <button id="logoutBtn" class="btn-secondary"
+                    style="padding: 0.5rem 1rem; font-size: 0.875rem; margin-right: 1rem;">Logout</button>
+
+                <button class="btn-primary" id="newTaskBtn"
+                    style="padding: 0.5rem; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="12" y1="5" x2="12" y2="19" stroke-width="2" stroke-linecap="round" />
+                        <line x1="5" y1="12" x2="19" y2="12" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Dashboard Content -->
+    <main class="container" style="padding-top: 8rem; padding-bottom: 4rem; min-height: 80vh;">
+        <div class="dashboard-grid">
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar">
+                <button class="sidebar-btn active" title="Tasks">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="3" width="18" height="14" rx="3" ry="3" stroke-width="2"></rect>
+                        <line x1="7" y1="8" x2="17" y2="8" stroke-width="2" stroke-linecap="round"></line>
+                        <line x1="7" y1="12" x2="13" y2="12" stroke-width="2" stroke-linecap="round"></line>
+                    </svg>
+                </button>
+                <button class="sidebar-btn" title="Schedule">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10" stroke-width="2"></circle>
+                        <polyline points="12 6 12 12 16 14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                    </svg>
+                </button>
+                <button class="sidebar-btn" title="Settings">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                </button>
+            </aside>
+
+            <!-- Main Column -->
+            <section class="dashboard-main">
+                <div class="box">
+                    <div class="box-header">
+                        <div>
+                            <h2 class="gradient-text" style="font-family: var(--font-display);">My Tasks</h2>
+                            <p style="color: var(--text-secondary);">Manage your projects and track progress</p>
+                        </div>
+                        <div style="display:flex; gap:1rem;">
+                            <div class="mini-stat">
+                                <span class="stat-label">Pending</span>
+                                <span class="stat-value" id="pendingCount">0</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-label">In Progress</span>
+                                <span class="stat-value" id="progressCount">0</span>
+                            </div>
+                            <div class="mini-stat">
+                                <span class="stat-label">Completed</span>
+                                <span class="stat-value" id="completedCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-strip"><div class="progress-fill"></div></div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 style="font-family: var(--font-display);">Overview</h3>
+                        <button class="btn-primary" id="newTaskBtn">New Task</button>
+                    </div>
+                    <div class="kanban-cards">
+                        <div class="kanban-card">
+                            <div class="card-title">Meeting with Client</div>
+                            <div style="color: var(--text-secondary);">Prepare agenda and notes</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Design Mockups</div>
+                            <div style="color: var(--text-secondary);">Finalize dashboard visuals</div>
+                        </div>
+                        <div class="kanban-card">
+                            <div class="card-title">Backend Review</div>
+                            <div style="color: var(--text-secondary);">Check endpoints & docs</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="task-filters" style="margin-bottom: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="filter-btn active" data-filter="all">All Tasks</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                    <div id="tasksList" class="tasks-list">
+                        <div class="loading-spinner"><div class="spinner"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Aside -->
+            <aside class="dashboard-aside">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 style="font-family: var(--font-display);">Upcoming Schedule</h3>
+                    </div>
+                    <div class="aside-card">
+                        <div style="font-weight:600;">Create Infographic for Education</div>
+                        <div style="color:var(--text-secondary);">Meeting with Executive — 15:38</div>
+                    </div>
+                    <div class="aside-card">
+                        <div style="font-weight:600;">Financial Planner Dashboard</div>
+                        <div style="color:var(--text-secondary);">Meeting with Stakeholder — 24:57</div>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="box-header">
+                        <h3 style="font-family: var(--font-display);">New Task</h3>
+                    </div>
+                    <form id="newTaskQuickForm" class="quick-form">
+                        <input id="quickTaskTitle" type="text" placeholder="Task title" required>
+                        <div class="tag-row">
+                            <span class="tag">Meeting</span>
+                            <span class="tag">Design</span>
+                            <span class="tag">Planner</span>
+                            <span class="tag">Security</span>
+                        </div>
+                        <button class="btn-primary" type="submit" style="width:100%; justify-content:center;">Create Task</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">New Task</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Title *</label>
+                    <input type="text" id="taskTitle" required placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="4" placeholder="Enter task description (optional)"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="taskStatus">Status</label>
+                    <select id="taskStatus">
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">
+                        <span id="submitBtnText">Create Task</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                            <circle cx="14" cy="14" r="12" fill="url(#brand-gradient)" opacity="0.2" />
+                            <path d="M8 14L12 18L20 9" stroke="url(#brand-gradient)" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="brand-name">TaskFlow</span>
+                    </div>
+                    <p class="mission-text">
+                        We are on a mission to simplify task management and boost productivity for everyone.
+                    </p>
+                    <div class="made-with-love">
+                        Made with ❤️ in India 🇮🇳
+                    </div>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Twitter"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                </path>
+                            </svg></a>
+                        <a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg></a>
+                        <a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg></a>
+                    </div>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Product</h4>
+                    <a href="#">Features</a>
+                    <a href="#">Enterprise</a>
+                    <a href="#">Security</a>
+                    <a href="#">Pricing</a>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Resources</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">Webinars</a>
+                    <a href="#">Help Center</a>
+                    <a href="#">API Documentation</a>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 TaskFlow Enterprises Private Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
